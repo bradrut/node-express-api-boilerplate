@@ -4,7 +4,7 @@
   "description": "Boilerplate code for a REST API using Node.js and Express, including relevant tools and middleware.",
   "main": "index.ts",
   "scripts": {
-    "start": "npx tsx index.ts",
+    "start": "npx tsx watch index.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Eriez Dev Team",
