@@ -9,6 +9,7 @@ Includes:
   - Boilerplate `service` layer
   - Boilerplate `model` layer
   - API route definition registered with Express
+- Zod for request validation
 - Custom error handling classes and middleware
   - With `express-async-errors` configuration to handle async errors
 - tsx (for running the app with live reload)

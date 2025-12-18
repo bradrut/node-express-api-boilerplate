@@ -1,5 +1,6 @@
 import { NextFunction, Request, Response } from "express";
-import { ApiError } from "../errors/ApiError";
+import { ApiError, ApiErrorContent } from "../errors/ApiError";
+import { prettifyError, ZodError } from "zod";
 
 
 /**
@@ -8,7 +9,7 @@ import { ApiError } from "../errors/ApiError";
  */
 export const errorHandler = (err: Error, req: Request, res: Response, next: NextFunction) => {
   // Handled errors
-  if(err instanceof ApiError) {
+  if (err instanceof ApiError) {
     const { statusCode, error, logging } = err;
     if(logging) {
       console.error(JSON.stringify({
@@ -19,6 +20,14 @@ export const errorHandler = (err: Error, req: Request, res: Response, next: Next
     }
 
     return res.status(statusCode).send(error);
+  } else if (err instanceof ZodError) {
+    console.error(err);
+
+    const errorResp: ApiErrorContent = {
+      message: prettifyError(err),
+    }
+
+    return res.status(400).send(errorResp);
   }
 
   // Unhandled errors
