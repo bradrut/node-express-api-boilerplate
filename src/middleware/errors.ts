@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from "express";
+import { flattenError, ZodError } from "zod";
 import { ApiError, ApiErrorContent } from "../errors/ApiError";
-import { prettifyError, ZodError } from "zod";
 
 
 /**
@@ -24,7 +24,8 @@ export const errorHandler = (err: Error, req: Request, res: Response, next: Next
     console.error(err);
 
     const errorResp: ApiErrorContent = {
-      message: prettifyError(err),
+      message: 'Request validation failed',
+      context: flattenError(err)
     }
 
     return res.status(400).send(errorResp);
