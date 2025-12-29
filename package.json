@@ -7,8 +7,8 @@
     "start": "npx tsx watch index.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Eriez Dev Team",
-  "license": "ISC",
+  "author": "Bradley Rutkowski",
+  "license": "",
   "dependencies": {
     "@types/express": "^4.17.21",
     "dotenv": "^17.2.3",
